@@ -7,7 +7,7 @@ class Week1Avatar extends StatelessWidget {
   Widget build(BuildContext context) {
     return const CircleAvatar(
       radius: 50,
-      backgroundImage: AssetImage("assets/images/car.jpg"),
+      backgroundImage: AssetImage("assets/images/logo.jpg"),
     );
   }
 }

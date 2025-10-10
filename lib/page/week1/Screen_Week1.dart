@@ -16,6 +16,7 @@ class _ScreenWeek1State extends State<ScreenWeek1> {
 
 
   void _editProfile() {
+
     final nameController = TextEditingController(text: name ?? "");
     final contentController = TextEditingController(text: content ?? "");
     final avatarController = TextEditingController(text: avatar ?? "");

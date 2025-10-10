@@ -8,7 +8,9 @@ class Week1Header extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: Colors.white,
+      // đổ bóng
       elevation: 0,
+      // icon xuất hiện bên trái
       leading: IconButton(onPressed: (){
         Navigator.pop(context);
 
