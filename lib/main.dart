@@ -9,37 +9,38 @@ import 'package:chaoflutter/page/thuvien/controller/borrow_controller.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: FirebaseOptions(
-      apiKey: "API_KEY",
-      appId: "APP_ID",
-      messagingSenderId: "SENDER_ID",
-      projectId: "PROJECT_ID",
-      // Thêm các trường còn thiếu nếu cần
-      storageBucket: "STORAGE_BUCKET",
-    ),
-  );
+  await Firebase.initializeApp();
+
   runApp(
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => StudentController()),
         ChangeNotifierProvider(create: (_) => BookController()),
         ChangeNotifierProxyProvider2<StudentController, BookController, BorrowController>(
-          create: (_) => BorrowController(
-            studentController: StudentController(),
-            bookController: BookController(),
-          ),
-          update: (_, studentController, bookController, borrowController) =>
-              BorrowController(
-                studentController: studentController,
-                bookController: bookController,
-              ),
+          create: (_) => BorrowController(),
+          update: (_, studentController, bookController, borrowController) {
+            borrowController!.update(studentController, bookController);
+            return borrowController;
+          },
         ),
-        Provider<AuthService>(create: (_) => AuthService()), // Thêm AuthService vào Provider
+        Provider<AuthService>(create: (_) => AuthService()),
       ],
       child: const MyApp(),
     ),
   );
+}
+
+class BorrowController extends ChangeNotifier {
+  late StudentController studentController;
+  late BookController bookController;
+
+  BorrowController();
+
+  void update(StudentController s, BookController b) {
+    studentController = s;
+    bookController = b;
+    notifyListeners();
+  }
 }
 
 class MyApp extends StatelessWidget {

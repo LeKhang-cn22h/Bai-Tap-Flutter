@@ -3,30 +3,34 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  final GoogleSignIn _googleSignIn = GoogleSignIn();
 
-  // Stream để theo dõi trạng thái đăng nhập
+    final GoogleSignIn _googleSignIn = GoogleSignIn.instance;
+
+
   Stream<User?> get user => _auth.authStateChanges();
 
-  // Đăng nhập với Google
   Future<User?> signInWithGoogle() async {
+    await _googleSignIn.initialize(
+      serverClientId:
+      '1052065410624-4gdov1il5jiq7lnd96bqd6fhtb8tfnt4.apps.googleusercontent.com',
+    );
+
     try {
-      // Trigger authentication flow
-      final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+      // Mở popup đăng nhập Google
+      final GoogleSignInAccount? googleUser = await _googleSignIn.authenticate();
 
-      if (googleUser == null) return null;
+      if (googleUser == null) return null; // Người dùng hủy đăng nhập
 
-      // Obtain auth details from request
+      // Lấy authentication
       final GoogleSignInAuthentication googleAuth =
       await googleUser.authentication;
 
-      // Create credentials
+      // Tạo credential với Firebase
       final OAuthCredential credential = GoogleAuthProvider.credential(
-        accessToken: googleAuth.accessToken,
         idToken: googleAuth.idToken,
       );
 
-      // Sign in to Firebase with credentials
+      // Đăng nhập vào Firebase
       final UserCredential userCredential =
       await _auth.signInWithCredential(credential);
 
@@ -44,7 +48,5 @@ class AuthService {
   }
 
   // Lấy thông tin user hiện tại
-  User? getCurrentUser() {
-    return _auth.currentUser;
-  }
+  User? getCurrentUser() => _auth.currentUser;
 }
