@@ -1,0 +1,7 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="run" type="FlutterRunConfigurationType" factoryName="Flutter" editBeforeRun="true">
+    <option name="attachArgs" value="flutter run" />
+    <option name="filePath" value="$PROJECT_DIR$/main.dart" />
+    <method v="2" />
+  </configuration>
+</component>
