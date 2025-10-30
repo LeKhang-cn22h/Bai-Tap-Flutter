@@ -49,6 +49,7 @@ class AlgorithmgaLogic {
     );
 
     Lich con = Lich(diem: 0, lichlam: lichCon);
+    //cơ hội đột biến
     if (random.nextDouble() < 0.3) {
       con.dotBien(dsNhanVien);
     }

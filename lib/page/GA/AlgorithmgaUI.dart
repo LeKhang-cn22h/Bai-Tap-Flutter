@@ -191,7 +191,7 @@ class _AlgorithmgauiState extends State<Algorithmgaui> {
                                   const Padding(
                                     padding: EdgeInsets.all(8.0),
                                     child: Text(
-                                      "Ca / Thứ",
+                                      "Lịch",
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold),
@@ -216,7 +216,7 @@ class _AlgorithmgauiState extends State<Algorithmgaui> {
                                 children: [
                                   const Padding(
                                     padding: EdgeInsets.all(8.0),
-                                    child: Text("Sáng",
+                                    child: Text("ca1",
                                         textAlign: TextAlign.center),
                                   ),
                                   ...lichToiUu!.lichlam[0].map(
@@ -235,7 +235,7 @@ class _AlgorithmgauiState extends State<Algorithmgaui> {
                                 children: [
                                   const Padding(
                                     padding: EdgeInsets.all(8.0),
-                                    child: Text("Chiều",
+                                    child: Text("Ca2",
                                         textAlign: TextAlign.center),
                                   ),
                                   ...lichToiUu!.lichlam[1].map(
