@@ -1,8 +1,10 @@
+import 'package:chaoflutter/page/W5_loginGG/Screen_login.dart';
 import 'package:chaoflutter/page/week3_inclass/Screen_W3_inclassP2.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../page/Column_detail/Screen_columnDetail.dart';
+import '../page/GA/AlgorithmgaUI.dart';
 import '../page/Image_Detail/Image_detail.dart';
 import '../page/Pass_detail/Screen_passField.dart';
 import '../page/Row_detail/Screen_rowDetail.dart';
@@ -26,11 +28,19 @@ import '../services/Screen_login.dart';
 
 final GoRouter appRouter =GoRouter(
     routes: [
-      GoRoute(
-        path: '/',
-        name: 'login',
-        builder: (context, state) => const LoginScreen(),
+      GoRoute(path: '/',
+      name: 'GA',
+        builder: (context,state)=>const Algorithmgaui()
       ),
+      // GoRoute(
+      //   path: '/',
+      //   name: 'login',
+      //   builder: (context, state) => const ScreenLogin(),),
+      // GoRoute(
+      //   path: '/',
+      //   name: 'login',
+      //   builder: (context, state) => const LoginScreen(),
+      // ),
       // GoRoute(
       //   path: '/',
       //   name: 'forget',

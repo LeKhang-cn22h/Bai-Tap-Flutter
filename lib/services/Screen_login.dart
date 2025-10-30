@@ -10,16 +10,21 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  // Khởi tạo AuthService
   final AuthService _authService = AuthService();
+  // Trạng thái loading
   bool _isLoading = false;
+  //lưu thông tin user hiện tại
   User? _currentUser;
 
   @override
   void initState() {
+    // Khởi tạo trạng thái ban đầu
     super.initState();
+    // Kiểm tra user hiện tại
     _checkCurrentUser();
   }
-
+//hàm kiểm tra user hiện tại và cập nhật trạng thái
   void _checkCurrentUser() {
     final user = _authService.getCurrentUser();
     if (user != null) {
@@ -82,7 +87,9 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Đăng nhập với Google'),
+        //tô màu nền
         backgroundColor: Colors.blue,
+
         foregroundColor: Colors.white,
       ),
       body: Padding(

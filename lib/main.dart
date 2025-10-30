@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../apps/apps_router.dart';
 import 'package:chaoflutter/page/thuvien/controller/book_controller.dart';
-import 'package:chaoflutter/page/thuvien/controller/borrow_controller.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // Khởi tạo Firebase
   await Firebase.initializeApp();
 
   runApp(
