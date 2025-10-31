@@ -1,5 +1,7 @@
 import 'package:chaoflutter/page/W5_loginGG/Screen_login.dart';
+import 'package:chaoflutter/page/W5_loginGG/Screen_profile.dart';
 import 'package:chaoflutter/page/week3_inclass/Screen_W3_inclassP2.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -28,14 +30,14 @@ import '../services/Screen_login.dart';
 
 final GoRouter appRouter =GoRouter(
     routes: [
-      GoRoute(path: '/',
-      name: 'GA',
-        builder: (context,state)=>const Algorithmgaui()
-      ),
-      // GoRoute(
-      //   path: '/',
-      //   name: 'login',
-      //   builder: (context, state) => const ScreenLogin(),),
+      // GoRoute(path: '/',
+      // name: 'GA',
+      //   builder: (context,state)=>const Algorithmgaui()
+      // ),
+      GoRoute(
+        path: '/',
+        name: 'login',
+        builder: (context, state) => const ScreenLogin(),),
       // GoRoute(
       //   path: '/',
       //   name: 'login',
@@ -148,7 +150,15 @@ builder: (context,state)=>const ScreenW4Home()
 builder: (context,state)=>const ScreenW4Home()),
   GoRoute(path: '/homeW3P2',
   name:'W3P2',
-builder: (context,state)=>const ScreenW3Inclassp2())
+builder: (context,state)=>const ScreenW3Inclassp2()),
+      GoRoute(
+        path: '/profile',
+        name: 'profile',
+        builder: (context, state) {
+          final user = state.extra as User;
+          return ProfileScreen(user: user);
+        },
+      ),
 
 
 ],

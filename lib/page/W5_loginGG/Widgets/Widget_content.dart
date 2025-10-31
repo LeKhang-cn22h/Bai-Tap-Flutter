@@ -1,6 +1,7 @@
 import 'package:chaoflutter/services/auth_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class WidgetContent extends StatefulWidget {
   const WidgetContent({super.key});
@@ -49,10 +50,14 @@ class _WidgetContentState extends State<WidgetContent> {
       setState(() {
         _currentUser = user;
       });
+      if (context.mounted) {
+        context.pushNamed('profile', extra: user);
+      }
 
     }
   }
-  catch{
+  catch(e){
+    print("lỗi đăng nhập $e");
     setState(() {
       _isLoading = false;
     });
@@ -64,7 +69,12 @@ class _WidgetContentState extends State<WidgetContent> {
       children: [
         Text("Welcome"),
         Text("Ready to explore? Login in to get started"),
-        ElevatedButton(onPressed: (){}, child: Text("Login"))
+        ElevatedButton(
+          onPressed: _isLoading ? null : _signInWithGG,
+          child: _isLoading
+              ? CircularProgressIndicator(color: Colors.white)
+              : Text("Login with Google"),
+        ),
 
       ],
     );
